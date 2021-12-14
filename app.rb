@@ -2,6 +2,7 @@
 
 require 'sinatra/base'
 require 'sinatra/reloader'
+require 'sinatra/flash'
 require './database_connection_setup'
 require './lib/user'
 require './lib/database_connection'
@@ -9,7 +10,8 @@ require './lib/database_connection'
 # Infactuation class is name of web application
 class Infactuation < Sinatra::Base
   enable :sessions
-
+  register Sinatra::Flash
+  
   configure :development do
     register Sinatra::Reloader
   end
@@ -34,8 +36,13 @@ class Infactuation < Sinatra::Base
 
   post '/sessions' do
     user = User.authenticate(email: params[:email], password: params[:password])
-    session[:user_id] = user.id
-    redirect '/facts'
+    if user
+      session[:user_id] = user.id
+      redirect '/facts'
+    else
+      flash[:notice] = "Please check your email or password"
+      redirect '/sessions/new'
+    end
   end
 
   get '/facts' do
