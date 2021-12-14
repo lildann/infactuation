@@ -1,4 +1,4 @@
-require 'database_connection'
+require_relative 'database_connection'
 
 class User
   def self.create(email:, password:)
@@ -18,6 +18,4 @@ class User
     @id = id
     @email = email
   end
-
-
 end
