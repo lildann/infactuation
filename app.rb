@@ -2,6 +2,7 @@
 
 require 'sinatra/base'
 require 'sinatra/reloader'
+require './database_connection_setup'
 
 # Infactuation class is name of web application
 class Infactuation < Sinatra::Base
