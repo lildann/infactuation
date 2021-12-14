@@ -33,8 +33,7 @@ class Infactuation < Sinatra::Base
   end
 
   post '/sessions' do
-    result = DatabaseConnection.query("SELECT * FROM users WHERE email = $1;", [params[:email]])
-    user = User.new(id: result[0]['id'], email: result[0]['email'])
+    user = User.authenticate(email: params[:email], password: params[:password])
     session[:user_id] = user.id
     redirect '/facts'
   end
