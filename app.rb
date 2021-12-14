@@ -4,6 +4,7 @@ require 'sinatra/base'
 require 'sinatra/reloader'
 require './database_connection_setup'
 require './lib/user'
+require './lib/database_connection'
 
 # Infactuation class is name of web application
 class Infactuation < Sinatra::Base
@@ -23,6 +24,17 @@ class Infactuation < Sinatra::Base
 
   post '/users' do
     user = User.create(email: params[:email], password: params[:password])
+    session[:user_id] = user.id
+    redirect '/facts'
+  end
+
+  get '/sessions/new' do 
+    erb :'sessions/new'
+  end
+
+  post '/sessions' do
+    result = DatabaseConnection.query("SELECT * FROM users WHERE email = $1;", [params[:email]])
+    user = User.new(id: result[0]['id'], email: result[0]['email'])
     session[:user_id] = user.id
     redirect '/facts'
   end
