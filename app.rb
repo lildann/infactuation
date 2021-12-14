@@ -45,6 +45,12 @@ class Infactuation < Sinatra::Base
     end
   end
 
+  post '/sessions/destroy' do
+    session.clear
+    flash[:notice] = "You have signed out"
+    redirect '/sessions/new'
+  end
+
   get '/facts' do
     # Fetch the user from the database, using an ID stored in the session
     @user = User.find(id: session[:user_id])
