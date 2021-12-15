@@ -6,7 +6,7 @@
 </form>
 
 <form action='/facts' method='post'>
-  Got a fact? <input type='text' name='text' placeholder='480 characters...'>
+  Got a fact? <input type='textarea' name='text' placeholder='480 characters...'>
   <input type='submit' value='Yes in fact'>
 </form>
 
@@ -15,6 +15,6 @@
 <ul>
 <% @facts.each do |fact| %>
   <%= fact.text %><br>
-  <%= fact.timestamp %><br><br>
+  <%= fact.format_timestamp %><br><br>
 <% end %>
 </ul>

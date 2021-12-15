@@ -22,4 +22,10 @@ class Fact
       Fact.new(id: fact['id'], text: fact['text'], timestamp: fact['timestamp'])
     end
   end
+ 
+  def format_timestamp
+    date = @timestamp.split("-")
+    time = @timestamp.split(" ")
+    "Added at #{time[1][0..4]} on #{date[2][0]}#{date[2][1]}/#{date[1]}/#{date[0]}"
+  end
 end

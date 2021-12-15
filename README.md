@@ -35,5 +35,5 @@ I want to see all facts in reverse chronological order
 
 As a User
 So that I can better appreciate the context of a fact
-I want to see the time at which it was made
+I want to see the time and date at which it was written
 ```
