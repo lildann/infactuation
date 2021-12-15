@@ -5,6 +5,7 @@ require 'sinatra/reloader'
 require 'sinatra/flash'
 require './database_connection_setup'
 require './lib/user'
+require './lib/fact'
 require './lib/database_connection'
 
 # Infactuation class is name of web application
@@ -54,7 +55,14 @@ class Infactuation < Sinatra::Base
   get '/facts' do
     # Fetch the user from the database, using an ID stored in the session
     @user = User.find(id: session[:user_id])
+    @facts = Fact.all
     erb :'facts/index'
+  end
+
+  post '/facts' do
+    p params
+    Fact.create(text: params[:text])
+    redirect '/facts'
   end
 
   # start the server if ruby file executed directly

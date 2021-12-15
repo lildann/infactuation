@@ -4,3 +4,17 @@
 <form action='/sessions/destroy' method='post'>
   <input type='submit' value='Sign out'>
 </form>
+
+<form action='/facts' method='post'>
+  Got a fact? <input type='text' name='text' placeholder='480 characters...'>
+  <input type='submit' value='Yes in fact'>
+</form>
+
+
+
+<ul>
+<% @facts.each do |fact| %>
+  <%= fact.text %><br>
+  <%= fact.timestamp %><br><br>
+<% end %>
+</ul>
