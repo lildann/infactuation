@@ -1,6 +1,9 @@
 # Infactuation App
 In an era of opinion, InFACTuation is an app to share facts
 
+## Aim
+Integrate a database to store user sign-in information and facts entered by users on the Infactuation app, using the PG gem and SQL queries
+
 ### Setup Database
 * CREATE DATABASE "infactuation";
 * CREATE DATABASE "infactuation_test";
