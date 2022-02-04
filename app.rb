@@ -55,7 +55,7 @@ class Infactuation < Sinatra::Base
   get '/facts' do
     # Fetch the user from the database, using an ID stored in the session
     @user = User.find(id: session[:user_id])
-    @facts = Fact.all
+    @facts = Fact.all.reverse!
     erb :'facts/index'
   end
 
